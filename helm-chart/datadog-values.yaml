@@ -1,0 +1,41 @@
+# Example of deploying the datadog agent on GCP with a helm chart
+
+datadog:
+  apiKeyExistingSecret: datadog-secret
+  clusterName: online-boutique
+
+  # Enable the new `kubernetes_state_core` check.
+  kubeStateMetricsCore:
+    enabled: true
+  # Avoid deploying kube-state-metrics chart.
+  # The new `kubernetes_state_core` doesn't require to deploy the kube-state-metrics anymore.
+  kubeStateMetricsEnabled: false
+
+agents:
+  containers:
+    agent:
+      # resources for the Agent container
+      resources:
+        requests:
+          cpu: 200m
+          memory: 256Mi
+
+    traceAgent:
+      # resources for the Trace Agent container
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+
+    processAgent:
+      # resources for the Process Agent container
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+
+  priorityClassCreate: true
+
+providers:
+  gke:
+    autopilot: true
