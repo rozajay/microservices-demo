@@ -11,6 +11,22 @@ datadog:
   # The new `kubernetes_state_core` doesn't require to deploy the kube-state-metrics anymore.
   kubeStateMetricsEnabled: false
 
+  # Additional DD metrics.
+  registry: gcr.io/datadoghq
+  site: datadoghq.com
+  tags:
+    - env:prod
+    - team:main
+    - service:learning
+  apm:
+    instrumentation:
+      enabled: true
+      libVersions:
+        java: v1.22.0
+  logs:
+    enabled: true
+    containerCollectAll: true
+
 agents:
   containers:
     agent:

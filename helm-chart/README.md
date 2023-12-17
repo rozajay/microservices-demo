@@ -4,7 +4,7 @@ If you'd like to deploy Online Boutique via its Helm chart, you could leverage t
 
 **Warning:** Online Boutique's Helm chart is currently experimental. If you have feedback or run into issues, let us know inside [GitHub Issue #1319](https://github.com/GoogleCloudPlatform/microservices-demo/issues/1319) or by creating a [new GitHub Issue](https://github.com/GoogleCloudPlatform/microservices-demo/issues/new/choose).
 
-First make sure you have followed steps 1-5 from [Quickstart Guide](./README.md).
+First make sure you have followed steps 1-4 from [Quickstart Guide](./README.md).
 
 Add the Datadog Helm Repository
 ```sh
@@ -12,7 +12,7 @@ helm repo add datadog https://helm.datadoghq.com
 helm repo update
 ```
 
-Create a Kubernetes secret with your API keys
+Create a Kubernetes secret with your API keys (API Key can be found inside your DD Account, Under Organisation > Access > API Keys)
 ```
 kubectl create secret generic datadog-secret --from-literal api-key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
@@ -20,7 +20,7 @@ kubectl create secret generic datadog-secret --from-literal api-key=XXXXXXXXXXXX
 Review the values inside [datadog-values.yaml](./datadog-values.yaml). 
 
 
-Deploy Agent with the above configuration file.
+Deploy Agent with the above configuration file. (Make sure you are inside the folder /helm-chart)
 
 ```
 helm install datadog-agent -f datadog-values.yaml datadog/datadog
