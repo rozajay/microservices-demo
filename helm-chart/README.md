@@ -4,7 +4,31 @@ If you'd like to deploy Online Boutique via its Helm chart, you could leverage t
 
 **Warning:** Online Boutique's Helm chart is currently experimental. If you have feedback or run into issues, let us know inside [GitHub Issue #1319](https://github.com/GoogleCloudPlatform/microservices-demo/issues/1319) or by creating a [new GitHub Issue](https://github.com/GoogleCloudPlatform/microservices-demo/issues/new/choose).
 
-First make sure you have followed steps 1-4 from [Quickstart Guide](./README.md).
+A cluster is needed first before deployment so first make sure you have followed steps 1-5 from [Quickstart Guide](./README.md).
+
+Deploy the default setup of Online Boutique:
+```sh
+helm upgrade onlineboutique oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique \
+    --install
+```
+
+After this if you run
+```
+kubectl get pods
+```
+
+You should see a list of running pods.
+![running pods](./img/availablePods.png)
+
+Get the external IP address of the frontend:
+
+```
+export SERVICE_IP=$(kubectl get svc --namespace default frontend-external --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+    echo http://$SERVICE_IP
+```
+
+You should see the e-commerce store up and running
+![online boutique](./img/onlineBoutique.png)
 
 Add the Datadog Helm Repository
 ```sh
@@ -19,40 +43,25 @@ kubectl create secret generic datadog-secret --from-literal api-key=XXXXXXXXXXXX
 
 Review the values inside [datadog-values.yaml](./datadog-values.yaml). 
 
-
 Deploy Agent with the above configuration file. (Make sure you are inside the folder /helm-chart)
 
 ```
 helm install datadog-agent -f datadog-values.yaml datadog/datadog
 ```
 
-Deploy the default setup of Online Boutique:
-```sh
-helm upgrade onlineboutique oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique \
-    --install
+After this if you run
 ```
+kubectl get pods
+```
+
+You should see a list of running pods plus the agent pods.
+![running pods](./img/allAvailablePods.png)
 
 If deployment has been successful you will be able to view the kubernetes hosts and containers on the dd platform.
 
-Deploy advanced scenario of Online Boutique:
-```sh
-helm upgrade onlineboutique oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique \
-    --install \
-    --create-namespace \
-    --set images.repository=us-docker.pkg.dev/my-project/containers/onlineboutique \
-    --set frontend.externalService=false \
-    --set redis.create=false \
-    --set cartservice.database.type=spanner \
-    --set cartservice.database.connectionString=projects/my-project/instances/onlineboutique/databases/carts \
-    --set serviceAccounts.create=true \
-    --set authorizationPolicies.create=true \
-    --set networkPolicies.create=true \
-    --set sidecars.create=true \
-    --set frontend.virtualService.create=true \
-    --set 'serviceAccounts.annotations.iam\.gke\.io/gcp-service-account=spanner-db-user@my-project.iam.gserviceaccount.com' \
-    --set serviceAccounts.annotationsOnlyForCartservice=true \
-    -n onlineboutique
-```
+![k8s overview](./img/k8sOverview.png)
+
+![logs available](./img/logsAvailable.png)
 
 For the full list of configurations, see [values.yaml](./values.yaml).
 
