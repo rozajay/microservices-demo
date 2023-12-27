@@ -137,6 +137,8 @@ loadGenerator:
 paymentService:
   create: true
   name: paymentservice
+  env: prod
+  version: 1
   resources:
     requests:
       cpu: 100m
@@ -195,3 +197,4 @@ cartDatabase:
     endpointAddress: ""
     endpointPort: ""
     certificate: ""
+
