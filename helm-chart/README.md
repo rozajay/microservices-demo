@@ -4,7 +4,7 @@ If you'd like to deploy Online Boutique via its Helm chart, you could leverage t
 
 **Warning:** Online Boutique's Helm chart is currently experimental. If you have feedback or run into issues, let us know inside [GitHub Issue #1319](https://github.com/GoogleCloudPlatform/microservices-demo/issues/1319) or by creating a [new GitHub Issue](https://github.com/GoogleCloudPlatform/microservices-demo/issues/new/choose).
 
-A cluster is needed first before deployment so first make sure you have followed steps 1-5 from [Quickstart Guide](./README.md).
+A cluster is needed first before deployment so first make sure you have followed steps 1-6 from [Quickstart Guide](./README.md).
 
 Deploy the default setup of Online Boutique:
 ```sh
