@@ -21,7 +21,7 @@ metadata:
   labels:
     tags.datadoghq.com/env: {{ .Values.paymentService.env}}
     tags.datadoghq.com/service: {{ .Values.paymentService.name }}
-    # tags.datadoghq.com/version: {{ .Values.paymentService.version }}
+    tags.datadoghq.com/version: {{ .Values.paymentService.version }}
 spec:
   selector:
     matchLabels:
