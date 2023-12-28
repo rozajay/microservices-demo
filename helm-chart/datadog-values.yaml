@@ -4,6 +4,9 @@ datadog:
   apiKeyExistingSecret: datadog-secret
   clusterName: online-boutique
 
+  # Exclude non default namespace containers
+  containerExclude: "kube_namespace:^kube-system$ kube_namespace:^gke-gmp-system$"
+
   # Enable the new `kubernetes_state_core` check.
   kubeStateMetricsCore:
     enabled: true
@@ -17,10 +20,7 @@ datadog:
   tags:
     - team:main
   apm:
-    instrumentation:
-      enabled: true
-      libVersions:
-        java: v1.22.0
+    socketEnabled: true
   logs:
     enabled: true
     containerCollectAll: true
