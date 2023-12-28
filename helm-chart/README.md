@@ -18,7 +18,7 @@ kubectl get pods
 ```
 
 You should see a list of running pods.
-![running pods](./img/availablePods.png)
+![running pods](../img/availablePods.png)
 
 Get the external IP address of the frontend:
 
@@ -28,7 +28,7 @@ export SERVICE_IP=$(kubectl get svc --namespace default frontend-external --temp
 ```
 
 You should see the e-commerce store up and running
-![online boutique](./img/onlineBoutique.png)
+![online boutique](../docs/img/onlineBoutique.png)
 
 Add the Datadog Helm Repository
 ```sh
@@ -55,13 +55,13 @@ kubectl get pods
 ```
 
 You should see a list of running pods plus the agent pods.
-![running pods](./img/allAvailablePods.png)
+![running pods](../docs/img/allAvailablePods.png)
 
 If deployment has been successful you will be able to view the kubernetes hosts and containers on the dd platform.
 
-![k8s overview](./img/k8sOverview.png)
+![k8s overview](../docs/img/k8sOverview.png)
 
-![logs available](./img/logsAvailable.png)
+![logs available](../docs/img/logsAvailable.png)
 
 For the full list of configurations, see [values.yaml](./values.yaml).
 
