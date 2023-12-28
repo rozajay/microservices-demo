@@ -24,6 +24,9 @@ datadog:
   logs:
     enabled: true
     containerCollectAll: true
+  processAgent:
+    enabled: true
+    processCollection: true
 
 agents:
   containers:
