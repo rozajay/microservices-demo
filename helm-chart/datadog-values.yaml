@@ -5,7 +5,8 @@ datadog:
   clusterName: online-boutique
 
   # Exclude non default namespace containers
-  containerExclude: "kube_namespace:^kube-system$ kube_namespace:^gke-gmp-system$"
+  containerExclude: "kube_namespace:.*"
+  containerInclude: "kube_namespace:^default$"
 
   # Enable the new `kubernetes_state_core` check.
   kubeStateMetricsCore:
