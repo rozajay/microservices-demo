@@ -18,6 +18,10 @@ kind: Deployment
 metadata:
   name: {{ .Values.adService.name }}
   namespace: {{ .Release.Namespace }}
+  labels:
+    tags.datadoghq.com/env: {{ .Values.adService.env}}
+    tags.datadoghq.com/service: {{ .Values.adService.name }}
+    tags.datadoghq.com/version: {{ .Values.adService.version }}
 spec:
   selector:
     matchLabels:

@@ -15,9 +15,7 @@ datadog:
   registry: gcr.io/datadoghq
   site: datadoghq.com
   tags:
-    - env:prod
     - team:main
-    - service:learning
   apm:
     instrumentation:
       enabled: true

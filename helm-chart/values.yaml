@@ -45,6 +45,8 @@ seccompProfile:
 adService:
   create: true
   name: adservice
+  env: prod
+  version: '1.0.0'
   resources:
     requests:
       cpu: 200m
