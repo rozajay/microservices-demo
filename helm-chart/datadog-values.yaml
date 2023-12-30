@@ -21,6 +21,7 @@ datadog:
   tags:
     - team:main
   apm:
+    enabled: true
     socketEnabled: true
   logs:
     enabled: true
