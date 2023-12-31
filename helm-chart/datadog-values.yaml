@@ -23,6 +23,7 @@ datadog:
   apm:
     enabled: true
     socketEnabled: true
+    portEnabled: true
   logs:
     enabled: true
     containerCollectAll: true

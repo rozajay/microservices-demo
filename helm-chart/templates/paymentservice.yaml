@@ -35,7 +35,7 @@ spec:
         tags.datadoghq.com/version: {{ .Values.paymentService.version }}
         admission.datadoghq.com/enabled: "true"
       annotations:
-        admission.datadoghq.com/js-lib.version: v3.6
+        admission.datadoghq.com/js-lib.version: v3.41.0
     spec:
       {{- if .Values.serviceAccounts.create }}
       serviceAccountName: {{ .Values.paymentService.name }}
@@ -70,7 +70,13 @@ spec:
             fieldRef:
               fieldPath: status.hostIP
         - name: DD_LOGS_INJECTION
-          value: "true"        
+          value: "true" 
+        - name: DD_TRACE_STARTUP_LOGS
+          value: "true"   
+        - name: DD_TRACING_ENABLED
+          value: "true"
+        - name: DD_TRACE_DEBUG
+          value: "true"  
         - name: PORT
           value: "50051"
         {{- if .Values.opentelemetryCollector.create }}
